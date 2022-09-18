@@ -1,0 +1,39 @@
+.container {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.header {
+	color: #240D57;
+	font-size: 60px;
+	width: 45vw;
+	margin: 5px
+}
+
+.innerHeader {
+	color: #8456EC;
+}
+
+.landingText {
+	width: 55vw;
+	margin-top: 5px;
+	margin-bottom: 25px;
+}
+
+.createEventButton {
+	background-image: linear-gradient(to right,  #501FC1, #E87BF8);
+	width: 370px;
+	font-size: 24px;
+	font-weight: 500;
+	color: white;
+	border: none;
+	border-radius: 10px;
+	padding-top: 12px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+	margin: 10px;
+}

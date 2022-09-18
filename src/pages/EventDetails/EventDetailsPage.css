@@ -1,0 +1,47 @@
+.eventContainer {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.eventName {
+	color: #240D57;
+	font-size: 60px;
+	width: 45vw;
+	margin: 10px;
+
+}
+
+.landingText {
+	width: 55vw;
+	margin-top: 5px;
+	margin-bottom: 25px;
+}
+
+.eventImage {
+  width:100%;
+	height: auto;
+  max-width:600px;
+}
+
+.darker {
+	color: #4F4F4F;
+}
+
+.purple {
+	color: #240D57;
+}
+
+.card {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 10px;
+	width: 300px;
+}
+
+.alignLeft {
+	align-items: flex-start;
+}

@@ -14,18 +14,15 @@ import {
 const CreateEventPage = () => {
 	const navigate = useNavigate();
 	const [eventDetails, setEventDetails] = useState({
+		eventName: '',
+		hostName: '',
 		eventPhoto: BirthdayCake,
+		streetName: '',
 	})
 
 	const onChangeHandler = (event) => {
-		console.log(event.target)
-		setEventDetails({...event, [event.target.name]: [event.target.value]})
+		setEventDetails(currentState => ({...currentState, [event.target.name]: event.target.value}))
 		// if(event.target.value) imageUrl()
-	}
-
-	const goToEventPage = (event) => {
-		event.preventDefault()
-		navigate('/event', {state: eventDetails})
 	}
 
 	// const imageUrl = () => {
@@ -33,51 +30,60 @@ const CreateEventPage = () => {
 	// }
 	//onClick={goToEventPage}
 
+	const changeStartDate = (value) => {
+		setEventDetails(currentState => ({...currentState, startDate: value}))
+	}
+
+	const changeEndDate = (value) => {
+		setEventDetails(currentState => ({...currentState, endDate: value}))
+	}
+
 	return (
 		<div className="container">
-			<form onSubmit={goToEventPage} className="container">
-				<label className="image">
-					<img src={BirthdayCake} alt="" className="eventImage"/>
-					{/* <input type="file" name="photo" onChange={onChangeHandler}/> */}
-				</label>
-				<label className="eventNameLabel">
-					Event Name
-					<input type="text" name="eventName" value={eventDetails.eventName} onChange={onChangeHandler}/>
-				</label>
-				<label className="hostNameLabel">
-					Host Name
-					<input type="text" name="hostName" onChange={onChangeHandler}/>
-				</label>
+			<label className="image">
+				<img src={BirthdayCake} alt="" className="eventImage"/>
+				{/* <input type="file" name="photo" onChange={onChangeHandler}/> */}
+			</label>
+			<label className="eventNameLabel">
+				Event Name
+				<input type="text" name="eventName" value={eventDetails.eventName} onChange={onChangeHandler}/>
+			</label>
+			<label className="hostNameLabel">
+				Host Name
+				<input type="text" name="hostName" onChange={onChangeHandler}/>
+			</label>
 
-				<div className="dates">
-				<label className="startLabel">
-					Start
-					<LocalizationProvider dateAdapter={AdapterDayjs}>
-						<DateTimePicker
-							renderInput={(props) => <TextField {...props} />}
-							label="startDate"
-							value={eventDetails.startDate}
-							onChange={onChangeHandler}
-						/>
-					</LocalizationProvider>
-				</label>
-					<label className="endLabel">End</label>
-					<LocalizationProvider dateAdapter={AdapterDayjs}>
-						<DateTimePicker
-							renderInput={(props) => <TextField {...props} />}
-							label="startDate"
-							value={eventDetails.startDate}
-							onChange={onChangeHandler}
-						/>
-					</LocalizationProvider>
-				</div>
-				<label className="locationLabel">
-					Location
-					<input type="text" name="eventLocation" onChange={onChangeHandler}/>
-				</label>
-
-				<button className="submitButton" type="submit">Next</button>
-			</form>
+			<div className="dates">
+			<label className="startLabel">
+				Start
+				<LocalizationProvider dateAdapter={AdapterDayjs}>
+					<DateTimePicker
+						renderInput={(props) => <TextField {...props} />}
+						name="startDate"
+						value={eventDetails.startDate}
+						onChange={value => changeStartDate(value)}
+					/>
+				</LocalizationProvider>
+			</label>
+				<label className="endLabel">End</label>
+				<LocalizationProvider dateAdapter={AdapterDayjs}>
+					<DateTimePicker
+						renderInput={(props) => <TextField {...props} />}
+						name="endDate"
+						value={eventDetails.endDate}
+						onChange={value => changeEndDate(value)}
+					/>
+				</LocalizationProvider>
+			</div>
+			<label className="locationLabel">
+				Location
+				<input type="text" name="eventLocation" onChange={onChangeHandler}/>
+			</label>
+			<Link to={"/event"} state={eventDetails}>
+				<button className="submitButton" type="submit">
+						Next
+				</button>
+			</Link>
 		</div>
 	)
 }

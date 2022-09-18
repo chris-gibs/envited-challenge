@@ -8,11 +8,13 @@ import {
 import CreateEventPage from './pages/CreateEvent/CreateEventPage'
 import EventDetailsPage from './pages/EventDetails/EventDetailsPage'
 import LandingPage from './pages/Landing/LandingPage'
-//navigation, platform styling?
+// import { createBrowserHistory } from 'history';
 
 function App() {
+	// const history = createBrowserHistory();
+	// history={history}
   return (
-		<Router>
+		<Router >
         <Routes>
           <Route exact path="/"  element={<LandingPage />} />
           <Route path="/create" element={<CreateEventPage />} />

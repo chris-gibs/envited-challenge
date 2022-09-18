@@ -9,20 +9,12 @@ import { ImCalendar, ImLocation } from "react-icons/im";
 */
 
 const EventDetailsPage = () => {
-	// const {state} = useLocation();
-	// console.log('state: ', state)
-	// const eventDetails = location.data
-// console.log()
-	const state = {
-		eventName: 'Title',
-		hostName: 'Person',
-		startDate: '01/12/2021',
-		endDate: '01/12/2021',
-		eventLocation: {streetName: '123 Fake Street', suburb: 'Fakeville', state: 'Fakeplace', postcode: '1000'},
-		eventPhoto: BirthdayCake,
-	}
-	const {eventName, hostName, startDate, endDate, eventLocation, eventPhoto} = state
+	const location = useLocation();
+	const data = location.state;
+	console.log('data: ', data);
 
+	const {eventName, hostName, startDate, endDate, eventLocation, eventPhoto} = data
+	console.log('date: ', JSON.stringify(startDate.$d))
 	return (
 		<div className="eventContainer">
 			<img src={eventPhoto} alt="event image" className="eventImage"/>
@@ -32,14 +24,14 @@ const EventDetailsPage = () => {
 			</div>
 				<div className="card">
 					<ImCalendar/>
-					<p className="purple">{startDate}</p>
-					<p>to: <span className="darker">{endDate}</span></p>
+					<p className="purple">{JSON.stringify(startDate.$d)}</p>
+					<p>to: <span className="darker">{JSON.stringify(endDate?.$d)}</span></p>
 				</div>
 
 				<div className="card">
 					<ImLocation />
-					<p className="purple">{eventLocation.streetName}</p>
-					<p>{`${eventLocation.suburb} ${eventLocation.state} ${eventLocation.postcode}`}</p>
+					<p className="purple">{eventLocation}</p>
+					{/* <p>{`${eventLocation.suburb} ${eventLocation.state} ${eventLocation.postcode}`}</p> */}
 				</div>
 
 		</div>

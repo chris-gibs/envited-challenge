@@ -1,26 +1,32 @@
 import React, {useState} from 'react'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
-import dayjs, { Dayjs } from 'dayjs';
+// import dayjs, { Dayjs } from 'dayjs';
 import TextField from '@mui/material/TextField';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import BirthdayCake from '../../assets/images/Birthday cake.png'
 import './CreateEventPage.css'
 import {
   Link
 } from "react-router-dom";
+import { ImCalendar, ImLocation, ImImage } from "react-icons/im";
+import { IconContext } from "react-icons";
+import { red } from '@mui/material/colors';
 
 const CreateEventPage = () => {
-	const navigate = useNavigate();
 	const [eventDetails, setEventDetails] = useState({
 		eventName: '',
 		hostName: '',
 		eventPhoto: BirthdayCake,
-		streetName: '',
+		location: {
+			streetName: '',
+
+		}
 	})
 
 	const onChangeHandler = (event) => {
+		console.log('event: ',event)
 		setEventDetails(currentState => ({...currentState, [event.target.name]: event.target.value}))
 		// if(event.target.value) imageUrl()
 	}
@@ -30,55 +36,54 @@ const CreateEventPage = () => {
 	// }
 	//onClick={goToEventPage}
 
-	const changeStartDate = (value) => {
-		setEventDetails(currentState => ({...currentState, startDate: value}))
-	}
-
-	const changeEndDate = (value) => {
-		setEventDetails(currentState => ({...currentState, endDate: value}))
+	const changeDateValue = (value, keyName) => {
+		setEventDetails(currentState => ({...currentState, [keyName]: value}))
 	}
 
 	return (
 		<div className="container">
-			<label className="image">
-				<img src={BirthdayCake} alt="" className="eventImage"/>
-				{/* <input type="file" name="photo" onChange={onChangeHandler}/> */}
-			</label>
-			<label className="eventNameLabel">
-				Event Name
-				<input type="text" name="eventName" value={eventDetails.eventName} onChange={onChangeHandler}/>
-			</label>
-			<label className="hostNameLabel">
-				Host Name
-				<input type="text" name="hostName" onChange={onChangeHandler}/>
-			</label>
+			<div className="imageContainer">
+				<img src={eventDetails.eventPhoto || BirthdayCake} alt="" className="eventImage"/>
+				<label for="imgUpload" className="imagePicker">
+				<IconContext.Provider value={{ color: "#8456EC", className: "global-class-name", size: '100px'}}>
+					<div>
+						<ImImage/>
+						<input type="file" name="photo" id="imgUpload" onChange={onChangeHandler} hidden/>
+					</div>
+				</IconContext.Provider>
+					<input type="file" name="photo" id="imgUpload" onChange={onChangeHandler} hidden/>
+				</label>
+			</div>
+
+			<TextField name="eventName" label="Title" onChange={onChangeHandler}/>
+
+			<TextField name="hostName" label="Host" onChange={onChangeHandler}/>
 
 			<div className="dates">
-			<label className="startLabel">
-				Start
+				<p className="startLabel">When: </p>
+				<p className="startLabel">Start</p>
 				<LocalizationProvider dateAdapter={AdapterDayjs}>
 					<DateTimePicker
 						renderInput={(props) => <TextField {...props} />}
 						name="startDate"
 						value={eventDetails.startDate}
-						onChange={value => changeStartDate(value)}
+						onChange={value => changeDateValue(value, 'startDate')}
 					/>
 				</LocalizationProvider>
-			</label>
-				<label className="endLabel">End</label>
+
+				<p className="endLabel">End</p>
 				<LocalizationProvider dateAdapter={AdapterDayjs}>
 					<DateTimePicker
 						renderInput={(props) => <TextField {...props} />}
 						name="endDate"
 						value={eventDetails.endDate}
-						onChange={value => changeEndDate(value)}
+						onChange={value => changeDateValue(value, 'endDate')}
 					/>
 				</LocalizationProvider>
 			</div>
-			<label className="locationLabel">
-				Location
+			<p className="locationLabel">Location</p>
 				<input type="text" name="eventLocation" onChange={onChangeHandler}/>
-			</label>
+
 			<Link to={"/event"} state={eventDetails}>
 				<button className="submitButton" type="submit">
 						Next

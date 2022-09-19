@@ -17,7 +17,7 @@ const CreateEventPage = () => {
 	const [eventDetails, setEventDetails] = useState({
 		eventName: '',
 		hostName: '',
-		eventPhoto: null,
+		eventPhoto: '',
 		location: {
 			streetName: '',
 
@@ -26,10 +26,11 @@ const CreateEventPage = () => {
 
 	const onChangeHandler = (event) => {
 		if(event.target.files && event.target.files[0]) {
-			console.log(event.target.files)
-
+			eventDetails.eventPhoto = window.URL.createObjectURL(event.target.files[0])
+			// .replace('blob:', '')
+			console.log('event: ', eventDetails)
 		}
-		console.log('event: ',event)
+		//console.log('event: ',event)
 		setEventDetails(currentState => ({...currentState, [event.target.name]: event.target.value}))
 	}
 
@@ -44,28 +45,21 @@ const CreateEventPage = () => {
 	return (
 		<div className="container">
 			<div className="imageContainer">
-
-
 					{eventDetails.eventPhoto
 					?
-						<label for="imgUpload">
-							<img src={eventDetails.eventPhoto || BirthdayCake} alt="event" className="eventImage"/>
+						<label htmlFor="imgUpload">
+							<img src={eventDetails.eventPhoto} alt="event" className="eventImage"/>
 						</label>
 					:
-					// <label className="imagePicker">
-					<label for="imgUpload">
-						<div className="boxShadow">
-							<IconContext.Provider value={{ color: "#8456EC", className: "global-class-name", size: '80px',}}>
-								<div>
+						<label htmlFor="imgUpload">
+							<div className="imgBoxShadow">
+								<IconContext.Provider value={{ color: "#8456EC", size: '80px'}}>
 									<ImImage/>
-
-								</div>
-							</IconContext.Provider>
-						</div>
+								</IconContext.Provider>
+							</div>
 						</label>
 					}
 					<input type="file" name="eventPhoto" id="imgUpload" onChange={onChangeHandler} hidden/>
-
 			</div>
 
 			<TextField name="eventName" label="Title" onChange={onChangeHandler}/>

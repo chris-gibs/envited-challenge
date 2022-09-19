@@ -23,22 +23,22 @@ const EventDetailsPage = () => {
 				<p>Hosted by: <span className="darker">{hostName}</span></p>
 			</div>
 				<div className="card">
-				<IconContext.Provider value={{ color: "blue", className: "global-class-name" }}>
-					<div>
+				<div className="boxShadow">
+					<IconContext.Provider value={{ color: "#8456EC", className: "global-class-name" }}>
 						<ImCalendar/>
-					</div>
-				</IconContext.Provider>
+					</IconContext.Provider>
+				</div>
 
 					<p className="purple">{JSON.stringify(startDate?.$d)}</p>
 					<p>to: <span className="darker">{JSON.stringify(endDate?.$d)}</span></p>
 				</div>
 
 				<div className="card">
-				<IconContext.Provider value={{ color: "blue", className: "global-class-name" }}>
-					<div>
-						<ImLocation />
-					</div>
+				<div className="boxShadow">
+				<IconContext.Provider value={{ color: "#E87BF8", className: "global-class-name" }}>
+					<ImLocation />
 				</IconContext.Provider>
+				</div>
 
 					<p className="purple">{eventLocation}</p>
 					{/* <p>{`${eventLocation.suburb} ${eventLocation.state} ${eventLocation.postcode}`}</p> */}

@@ -18,8 +18,10 @@ const CreateEventPage = () => {
 		eventName: '',
 		hostName: '',
 		eventPhoto: '',
+		startDate: new Date(),
+		endDate: new Date(),
 		street: '',
-		city: '',
+		suburb: '',
 		state: '',
 		postcode: '',
 	})
@@ -93,7 +95,7 @@ const CreateEventPage = () => {
 				<p className="locationLabel">Location: </p>
 				<div>
 					<TextField name="street" label="Street" onChange={onChangeHandler}/>
-					<TextField name="city" label="City" onChange={onChangeHandler}/>
+					<TextField name="suburb" label="Suburb" onChange={onChangeHandler}/>
 				</div>
 				<div>
 					<TextField name="state" label="State" onChange={onChangeHandler}/>

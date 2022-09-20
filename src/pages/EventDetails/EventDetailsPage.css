@@ -39,14 +39,15 @@
 	align-items: center;
 	justify-content: space-between;
 	margin: 10px;
-	width: 300px;
+	width: 80%;
 }
 
 .alignLeft {
-	align-items: flex-start;
+	text-align: left;
+	margin-right: auto;
 }
 
-.boxShadow {
+.eventBoxShadows {
 	margin: 20px;
 	display: flex;
 	align-items: center;

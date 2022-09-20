@@ -13,7 +13,7 @@ const EventDetailsPage = () => {
 	const data = location.state;
 	console.log('data: ', data);
 
-	const {eventName, hostName, startDate, endDate, eventLocation, eventPhoto} = data
+	const {eventName, hostName, startDate, endDate, street, city, state, postcode, eventPhoto} = data
 	console.log('date: ', JSON.stringify(startDate?.$d))
 	return (
 		<div className="eventContainer">
@@ -40,7 +40,7 @@ const EventDetailsPage = () => {
 				</IconContext.Provider>
 				</div>
 
-					<p className="purple">{eventLocation}</p>
+					<p className="purple">{`${street}, ${city}, ${state} ${postcode}`}</p>
 					{/* <p>{`${eventLocation.suburb} ${eventLocation.state} ${eventLocation.postcode}`}</p> */}
 				</div>
 

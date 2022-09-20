@@ -18,10 +18,10 @@ const CreateEventPage = () => {
 		eventName: '',
 		hostName: '',
 		eventPhoto: '',
-		location: {
-			streetName: '',
-
-		}
+		street: '',
+		city: '',
+		state: '',
+		postcode: '',
 	})
 
 	const onChangeHandler = (event) => {
@@ -88,8 +88,18 @@ const CreateEventPage = () => {
 					/>
 				</LocalizationProvider>
 			</div>
-			<p className="locationLabel">Location</p>
-				<input type="text" name="eventLocation" onChange={onChangeHandler}/>
+
+			<div>
+				<p className="locationLabel">Location: </p>
+				<div>
+					<TextField name="street" label="Street" onChange={onChangeHandler}/>
+					<TextField name="city" label="City" onChange={onChangeHandler}/>
+				</div>
+				<div>
+					<TextField name="state" label="State" onChange={onChangeHandler}/>
+					<TextField name="postcode" label="Postcode" onChange={onChangeHandler}/>
+				</div>
+			</div>
 
 			<Link to={"/event"} state={eventDetails}>
 				<button className="submitButton" type="submit">
